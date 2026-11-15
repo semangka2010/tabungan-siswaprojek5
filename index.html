@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabungan Siswa - SMK Swasta Prama Artha</title>
+    
+    <!-- PERBAIKAN UTAMA: Jalur file CSS diarahkan ke dalam folder css/ -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Tautan FontAwesome CDN Resmi untuk memunculkan ikon -->
+    <link rel="stylesheet" href="https://cloudflare.com" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Header Banner Utama -->
+        <header class="main-header">
+            <div class="logo-box">
+                <!-- Memanggil file gambar logo sekolah dari folder assets -->
+                <img src="assets/images/logo-sekolah.jpg" alt="Logo SMK Prama Artha" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <!-- Cadangan ikon topi jika gambar belum ada di folder assets -->
+                <i class="fa-solid fa-graduation-cap icon-logo" style="display: none;"></i>
+            </div>
+            <h2 class="sub-title">SMK Swasta Prama Artha</h2>
+            <h1 class="main-title">TABUNGAN SISWA</h1>
+            <p class="badge-title">Sistem Informasi Tabungan & Investasi Kelas</p>
+        </header>
+
+        <!-- Menu Navigasi Tab -->
+        <nav class="nav-menu">
+            <a href="#dashboard" class="nav-item active" id="nav-dashboard"><i class="fa-solid fa-chart-pie"></i> Beranda</a>
+            <a href="#data-siswa" class="nav-item" id="nav-siswa"><i class="fa-solid fa-user-graduate"></i> Data Siswa</a>
+            <a href="#penarikan" class="nav-item" id="nav-penarikan"><i class="fa-solid fa-hand-holding-dollar"></i> Penarikan</a>
+        </nav>
+
+        <!-- Konten Utama -->
+        <main class="main-content">
+
+            <!-- Section: Dashboard -->
+            <section id="dashboard" class="section-block">
+                <div class="section-header">
+                    <i class="fa-solid fa-chart-line text-blue"></i>
+                    <div>
+                        <h3>Dashboard</h3>
+                        <p class="sub-text">Ringkasan keuangan tabungan siswa</p>
+                    </div>
+                </div>
+
+                <!-- Grid Kartu Keuangan -->
+                <div class="card-grid">
+                    <div class="card card-blue">
+                        <i class="fa-solid fa-money-bill-trend-up card-icon"></i>
+                        <p class="card-label">Total Setoran</p>
+                        <p id="totalSetoran" class="card-value">Rp 0</p>
+                    </div>
+                    <div class="card card-orange">
+                        <i class="fa-solid fa-wallet card-icon"></i>
+                        <p class="card-label">Total Penarikan</p>
+                        <p id="totalPenarikan" class="card-value">Rp 0</p>
+                    </div>
+                    <div class="card card-green">
+                        <i class="fa-solid fa-vault card-icon"></i>
+                        <p class="card-label">Saldo Tabungan</p>
+                        <p id="saldoTabungan" class="card-value">Rp 0</p>
+                    </div>
+                    <div class="card card-purple">
+                        <i class="fa-solid fa-users card-icon"></i>
+                        <p class="card-label">Jumlah Siswa</p>
+                        <p id="jumlahSiswa" class="card-value">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Tambah Data Siswa -->
+            <section id="data-siswa" class="section-block bg-white shadow-box">
+                <div class="form-header">
+                    <i class="fa-solid fa-user-plus text-blue"></i>
+                    <h3>Pendaftaran Siswa Baru</h3>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-box">
+                        <label>Nama Siswa</label>
+                        <input id="namaSiswa" type="text" placeholder="Masukkan nama lengkap siswa">
+                    </div>
+                    <div class="input-box">
+                        <label>Pilih Jurusan dan Kelas</label>
+                        <select id="kelasSiswa">
+                            <option value="">-- Pilih Kelas --</option>
+                            <option value="X RPL 1">X RPL 1</option>
+                            <option value="X RPL 2">X RPL 2</option>
+                            <option value="X RPL 3">X RPL 3</option>
+                            <option value="XI RPL 1">XI RPL 1</option>
+                            <option value="XI RPL 2">XI RPL 2</option>
+                            <option value="X AKL">X AKL</option>
+                            <option value="XI AKL">XI AKL</option>
+                            <option value="X TSM 1">X TSM 1</option>
+                            <option value="X TSM 2">X TSM 2</option>
+                            <option value="XI TSM 1">XI TSM 1</option>
+                            <option value="XI TSM 2">XI TSM 2</option>
+                            <option value="X MPLB">X MPLB</option>
+                            <option value="XI MPLB">XI MPLB</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label>Setoran Awal (Rp)</label>
+                        <input id="setoranAwal" type="number" placeholder="Contoh: 10000">
+                    </div>
+                    <button id="btnTambah" class="btn btn-blue">
+                        <i class="fa-solid fa-plus"></i> Tambah & Setor Tabungan
+                    </button>
+                </div>
+
+                <div class="info-box">
+                    <i class="fa-solid fa-lightbulb text-amber"></i>
+                    <p>Saran setoran rutin minggu minimum: <b>Rp5.000</b></p>
+                </div>
+
+                <!-- Tabel Daftar Siswa -->
+                <div class="table-container">
+                    <h4>Daftar Tabungan Siswa</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="width: 50px;">No</th>
+                                <th>Nama</th>
+                                <th>Kelas</th>
+                                <th class="text-right">Saldo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelSiswa">
+                            <tr id="emptyRow">
+                                <td colspan="4" class="table-empty">Belum ada data siswa.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section: Penarikan -->
+            <section id="penarikan" class="section-block bg-white shadow-box">
+                <div class="form-header">
+                    <i class="fa-solid fa-hand-holding-dollar text-orange"></i>
+                    <h3>Pencatatan Penarikan Tabungan</h3>
+                </div>
+                <div class="form-group">
+                    <div class="input-box">
+                        <label>Keterangan / Keperluan Keluar</label>
+                        <input id="tarikKeterangan" type="text" placeholder="Contoh: Penarikan perlengkapan praktek">
+                    </div>
+                    <div class="input-box">
+                        <label>Nominal Penarikan (Rp)</label>
+                        <input id="tarikNominal" type="number" placeholder="Masukkan nominal uang keluar">
+                    </div>
+                    <button id="btnTarik" class="btn btn-orange">Simpan & Ambil Uang</button>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>© 2026 Tabungan Siswa Mobile. All Rights Reserved.</p>
+            <p class="footer-highlight">SMK Swasta Prama Artha - Project Kelompok 5</p>
+        </footer>
+    </div>
+
+    <!-- PERBAIKAN UTAMA: Jalur file JS diarahkan ke dalam folder js/ -->
+    <script src="js/script.js"></script>
+</body>
+</html>
